@@ -63,6 +63,10 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      adwaita-icon-theme
+      gnome-themes-extra
+    ];
   };
   
   # Enable CUPS to print documents.
