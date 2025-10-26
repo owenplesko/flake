@@ -58,16 +58,14 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Wayland and Sway
-  services.gnome.gnome-keyring.enable = true;
-  programs.sway = {
+  # Cosmic WM
+  services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.autoLogin = {
     enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      adwaita-icon-theme
-      gnome-themes-extra
-    ];
+    user = "owen";
   };
+  environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
   
   # Enable CUPS to print documents.
   services.printing.enable = true;
