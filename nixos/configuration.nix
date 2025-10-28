@@ -58,14 +58,12 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Cosmic WM
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.autoLogin = {
+  # Sway WM
+  services.gnome.gnome-keyring.enable = true;
+  programs.sway = {
     enable = true;
-    user = "owen";
+    wrapperFeatures.gtk = true;
   };
-  environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
   
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -93,8 +91,7 @@
   ];
 
   # System Programs
-  programs.steam = 
-  {
+  programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
   };
@@ -103,14 +100,28 @@
   hardware.opengl = {
     enable = true;
   };
-
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     open = true;
     modesetting.enable = true;
   };
+  environment.variables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_RENDERER = "vulkan";
+  };
 
+  # Host
   networking.hostName = "nixos";
+
+  # Users
+  users.users.greeter = {
+    isSystemUser = true;
+    description = "Greetd greeter user";
+    home = "/var/lib/greeter";
+    shell = pkgs.bashInteractive;
+  };
 
   users.users = {
     owen = {
@@ -119,6 +130,19 @@
       extraGroups = ["wheel" "networkmanager"];
     };
   };
+
+  # Setup greetd
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.sway}/bin/sway --unsupported-gpu";
+        user = "greeter";
+      };
+    };
+  };
+ 
+  
 
   # Setup home-manager
   home-manager = {
