@@ -27,7 +27,8 @@
     vlc
     discord
     spotify
-    alacritty 
+    neofetch
+    pywal
 
     # Scripts
     (writeShellScriptBin "rebuild" ''
@@ -39,6 +40,13 @@
       sudo nvim /etc/nixos
     '')
   ];
+
+  programs.kitty = {
+    enable = true;
+    settings = {
+      include = "~/.cache/wal/colors-kitty.conf";
+    };
+  };
 
   programs.firefox = {
     enable = true;
