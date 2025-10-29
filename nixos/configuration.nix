@@ -116,13 +116,6 @@
   networking.hostName = "nixos";
 
   # Users
-  users.users.greeter = {
-    isSystemUser = true;
-    description = "Greetd greeter user";
-    home = "/var/lib/greeter";
-    shell = pkgs.bashInteractive;
-  };
-
   users.users = {
     owen = {
       initialPassword = "password";
@@ -137,12 +130,10 @@
     settings = {
       default_session = {
         command = "${pkgs.sway}/bin/sway --unsupported-gpu";
-        user = "greeter";
+	user = "owen";
       };
     };
-  };
- 
-  
+  }; 
 
   # Setup home-manager
   home-manager = {
