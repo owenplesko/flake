@@ -66,6 +66,10 @@
     enable = true;
     config = {
       bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
+      focus.followMouse = false;
+      gaps = {
+        inner = 20;
+      };
     };
   };
   
