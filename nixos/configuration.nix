@@ -70,6 +70,13 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  stylix = {
+    enable = true;
+    polarity = "dark";
+    image = ../assets/backgrounds/pixel_galaxy.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/moonlight.yaml";
+  };
+
   # Sway WM
   programs.sway = {
     enable = true;
@@ -138,6 +145,7 @@
 
   # Setup home-manager
   home-manager = {
+    backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs outputs; };
     users = {
       owen = import ../home-manager/home.nix;

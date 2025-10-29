@@ -41,8 +41,6 @@
      '')
   ];
 
-  stylix.image = ../assets/background/pixel_galaxy.png;
-
   programs.git = {
 	  enable = true;
 	  settings = {
