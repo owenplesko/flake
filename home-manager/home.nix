@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  imports = [ ./waybar.nix ]; 
+  imports = [ ./waybar/waybar.nix ]; 
   
   nixpkgs = {
     overlays = [ ];
