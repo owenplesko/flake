@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: {
-  imports = [ ]; 
+  imports = [ ./waybar.nix ]; 
   
   nixpkgs = {
     overlays = [ ];
@@ -35,10 +35,6 @@
       #!${bash}/bin/bash
       sudo nixos-rebuild switch --flake /etc/nixos#nixos
       '')
-    (writeShellScriptBin "nixos-edit" ''
-#!${bash}/bin/bash
-     sudo nvim /etc/nixos
-     '')
   ];
 
   programs.git = {
@@ -50,21 +46,30 @@
 	  };
   };
 
-  programs.kitty = {
-	  enable = true;
-	  settings = {
-	  };
+  programs.zsh = {
+    enable = true;
+    initContent = ''
+      neofetch
+      eval "$(starship init zsh)"
+    '';
   };
 
-  programs.waybar = {
+  programs.starship = {
+    enable = true;
+  };
+
+  programs.kitty = {
 	  enable = true;
-	  systemd.enable = true;
+          settings = {
+	    shell = "${pkgs.zsh}/bin/zsh";
+          };
   };
 
   wayland.windowManager.sway = {
 	  enable = true; 
 	  config = {
 	          modifier = "Mod4";
+		  terminal = "kitty";
 		  bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
 		  focus.followMouse = false;
 		  startup = [
