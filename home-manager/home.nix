@@ -29,48 +29,59 @@
     discord
     spotify
     neofetch
-    pywal
 
     # Scripts
     (writeShellScriptBin "rebuild" ''
       #!${bash}/bin/bash
       sudo nixos-rebuild switch --flake /etc/nixos#nixos
-    '')
+      '')
     (writeShellScriptBin "nixos-edit" ''
-      #!${bash}/bin/bash
-      sudo nvim /etc/nixos
-    '')
+#!${bash}/bin/bash
+     sudo nvim /etc/nixos
+     '')
   ];
 
+  stylix.image = ../assets/background/pixel_galaxy.png;
+
   programs.git = {
-    enable = true;
-    userName = "owen";
-    userEmail = "owenplesko@gmail.com";
-    extraConfig = {
-      safe.directory = [ "/etc/nixos" ];
-    };
+	  enable = true;
+	  settings = {
+		  user.name = "owen";
+		  user.email = "owenplesko@gmail.com";
+		  safe.directory = [ "/etc/nixos" ];
+	  };
   };
 
   programs.kitty = {
-    enable = true;
-    settings = {
-      include = "~/.cache/wal/colors-kitty.conf";
-    };
+	  enable = true;
+	  settings = {
+	  };
   };
 
   programs.waybar = {
-    enable = true;
+	  enable = true;
+	  systemd.enable = true;
   };
 
   wayland.windowManager.sway = {
-    enable = true;
-    config = {
-      bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
-      focus.followMouse = false;
-      gaps = {
-        inner = 20;
-      };
+	  enable = true; 
+	  config = {
+	          modifier = "Mod4";
+		  bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
+		  focus.followMouse = false;
+		  startup = [
+		    {command = "firefox";}
+		    {command = "kitty";}
+		  ];
+		  gaps = {
+			  inner = 20;
+		  };
+	  };
+    systemd = {
+      enable = true;
+      variables = ["--all"];
     };
+    wrapperFeatures.gtk = true;
   };
   
   programs.firefox = {

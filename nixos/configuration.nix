@@ -54,22 +54,36 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Greeter
+  programs.dconf.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
+	user = "greeter";
+      }; 
+    };
+  };
+
   # Timezone and locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Sway WM
-  services.gnome.gnome-keyring.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
   };
+  services.gnome.gnome-keyring.enable = true;
+  security.polkit.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -97,9 +111,7 @@
   };
 
   # NVidia drivers
-  hardware.opengl = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     open = true;
@@ -123,17 +135,6 @@
       extraGroups = ["wheel" "networkmanager"];
     };
   };
-
-  # Setup greetd
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.sway}/bin/sway --unsupported-gpu";
-	user = "owen";
-      };
-    };
-  }; 
 
   # Setup home-manager
   home-manager = {
