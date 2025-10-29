@@ -5,12 +5,10 @@
   pkgs,
   ...
 }: {
-  imports = [
-  ];
-
+  imports = [ ]; 
+  
   nixpkgs = {
-    overlays = [
-    ];
+    overlays = [ ];
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
@@ -18,10 +16,13 @@
     };
   };
 
+  programs.home-manager.enable = true; 
+
   home = {
     username = "owen";
     homeDirectory = "/home/owen";
-  };
+    stateVersion = "23.05";
+  }; 
 
   home.packages = with pkgs; [
     vlc
@@ -41,6 +42,15 @@
     '')
   ];
 
+  programs.git = {
+    enable = true;
+    userName = "owen";
+    userEmail = "owenplesko@gmail.com";
+    extraConfig = {
+      safe.directory = [ "/etc/nixos" ];
+    };
+  };
+
   programs.kitty = {
     enable = true;
     settings = {
@@ -48,6 +58,17 @@
     };
   };
 
+  programs.waybar = {
+    enable = true;
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
+    };
+  };
+  
   programs.firefox = {
     enable = true;
     
@@ -60,21 +81,7 @@
       };
     };
   }; 
-
-  programs.git = {
-    enable = true;
-    userName = "owen";
-    userEmail = "owenplesko@gmail.com";
-    extraConfig = {
-      safe.directory = [ "/etc/nixos" ];
-    };
-  };
-
-  programs.home-manager.enable = true;
-
+ 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
 }
