@@ -71,7 +71,7 @@
   i18n.defaultLocale = "en_US.UTF-8"; 
 
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
+    maple-mono.NF-unhinted
   ];
 
   stylix = {
@@ -79,6 +79,12 @@
     polarity = "dark";
     image = ../assets/backgrounds/pixel_galaxy.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/moonlight.yaml";
+    fonts = {
+      monospace = {
+        package = pkgs.maple-mono.NF-unhinted;
+        name = "Maple Mono";
+      };
+    };
   };
 
   # Sway WM
@@ -113,7 +119,7 @@
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     mako # notification system developed by swaywm maintainer 
-  ];
+  ]; 
 
   # System Programs
   programs.steam = {
