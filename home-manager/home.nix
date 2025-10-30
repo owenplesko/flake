@@ -22,7 +22,7 @@
     username = "owen";
     homeDirectory = "/home/owen";
     stateVersion = "23.05";
-  }; 
+  };  
 
   home.packages = with pkgs; [
     vlc
