@@ -72,6 +72,7 @@
 
   fonts.packages = with pkgs; [
     maple-mono.NF-unhinted
+    font-awesome
   ];
 
   stylix = {
@@ -82,7 +83,7 @@
     fonts = {
       monospace = {
         package = pkgs.maple-mono.NF-unhinted;
-        name = "Maple Mono";
+        name = "Maple Mono NF";
       };
     };
   };
