@@ -51,8 +51,10 @@
   };
 
   # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/nvme0n1";
+  };
 
   # Greeter
   programs.dconf.enable = true;

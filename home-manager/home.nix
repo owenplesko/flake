@@ -5,7 +5,10 @@
   pkgs,
   ...
 }: {
-  imports = [ ./waybar/waybar.nix ]; 
+  imports = [ 
+    ./waybar/waybar.nix 
+    ./wofi/wofi.nix
+  ]; 
   
   nixpkgs = {
     overlays = [ ];
