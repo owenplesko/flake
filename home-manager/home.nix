@@ -77,7 +77,7 @@
 		    {command = "kitty";}
 		  ];
 		  gaps = {
-			  inner = 20;
+			  inner = 8;
 		  };
 	  };
     systemd = {
