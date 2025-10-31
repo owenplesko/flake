@@ -8,6 +8,7 @@
   imports = [ 
     ./waybar/waybar.nix 
     ./wofi/wofi.nix
+    ./sway.nix
   ]; 
   
   nixpkgs = {
@@ -66,29 +67,7 @@
           settings = {
 	    shell = "${pkgs.zsh}/bin/zsh";
           };
-  };
-
-  wayland.windowManager.sway = {
-	  enable = true; 
-	  config = {
-	          modifier = "Mod4";
-		  terminal = "kitty";
-		  bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
-		  focus.followMouse = false;
-		  startup = [
-		    {command = "firefox";}
-		    {command = "kitty";}
-		  ];
-		  gaps = {
-			  inner = 8;
-		  };
-	  };
-    systemd = {
-      enable = true;
-      variables = ["--all"];
-    };
-    wrapperFeatures.gtk = true;
-  };
+  }; 
   
   programs.firefox = {
     enable = true;
