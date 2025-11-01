@@ -13,11 +13,11 @@
     vimdiffAlias = true;
  
     plugins = with pkgs.vimPlugins; [
-       
+      mini-nvim 
     ];
 
     extraLuaConfig = ''
-      ${builtins.readFile ./nvim/keymaps.lua}
+      ${builtins.readFile ./keymaps.lua}
     '';
-  }
+  };
 }

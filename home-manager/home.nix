@@ -10,6 +10,7 @@
     ./wofi/wofi.nix
     ./sway.nix
     ./nvim/nvim.nix
+    ./obsidian.nix
   ]; 
   
   nixpkgs = {
@@ -40,7 +41,7 @@
       #!${bash}/bin/bash
       sudo nixos-rebuild switch --flake /etc/nixos#nixos
       '')
-  ]; 
+  ];  
 
   programs.git = {
 	  enable = true;
