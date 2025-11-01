@@ -9,6 +9,7 @@
     ./waybar/waybar.nix 
     ./wofi/wofi.nix
     ./sway.nix
+    ./nvim/nvim.nix
   ]; 
   
   nixpkgs = {

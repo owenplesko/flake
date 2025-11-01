@@ -12,7 +12,7 @@ in
   wayland.windowManager.sway = {
     enable = true; 
     config = {
-      inherit modifier 
+      inherit modifier;
       terminal = "kitty";
       keybindings = lib.mkOptionDefault {
         "${config.wayland.windowManager.sway.config.modifier}+space" = "exec ${pkgs.wofi}/bin/wofi --show drun"; 
