@@ -11,6 +11,7 @@
     ./sway.nix
     ./nvim/nvim.nix
     ./obsidian.nix
+    ./firefox.nix
   ]; 
   
   nixpkgs = {
@@ -69,20 +70,7 @@
           settings = {
 	    shell = "${pkgs.zsh}/bin/zsh";
           };
-  }; 
-  
-  programs.firefox = {
-    enable = true;
-    
-    profiles = {
-      default = {
-        id = 0;
-	name = "default";
-	isDefault = true;	
-        extensions = [ ]; 
-      };
-    };
-  }; 
+  };  
  
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
