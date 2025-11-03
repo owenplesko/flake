@@ -13,6 +13,7 @@ in
     enable = true; 
     config = {
       inherit modifier;
+      output."DP-1".mode = "3440x1440@174.962Hz";
       terminal = "kitty";
       keybindings = lib.mkOptionDefault {
         "${config.wayland.windowManager.sway.config.modifier}+space" = "exec ${pkgs.wofi}/bin/wofi --show drun"; 

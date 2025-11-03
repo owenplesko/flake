@@ -10,33 +10,53 @@
     
     profiles = {
       default = {
-	id = 0;
-	name = "default";
 	isDefault = true;	
         settings = {
 	  "browser.startup.homepage" = "https://google.com";
+	  "extensions.autoDisableScopes" = 0;
+          "extensions.update.autoUpdateDefault" = false;
+          "extensions.update.enabled" = false;
 	};
-	extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-	];
-	bookarks = [
-          {
-	    name = "Nix Resources";
-	    bookmarks = [
-	      {
-	        name = "Home Manager";
-		url = "https://nix-community.github.io/home-manager/options.xhtml";
-	      }
-	      {
-	        name = "Stylix";
-		url = "https://nix-community.github.io/stylix/";
-	      }
-	    ];
-	  }
-	];
+	extensions = {
+	  force = true;
+	  packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+	  ];
+	};
+	bookmarks = {
+	  force = true;
+	  settings = [
+            { 
+	      name = "toolbar";
+	      toolbar = true;
+	      bookmarks = [
+	        {
+	          name = "Nix Resources";
+	          bookmarks = [
+	            {
+	              name = "Home Manager";
+	              url = "https://nix-community.github.io/home-manager/options.xhtml";
+	            }
+	            {
+	              name = "Stylix";
+		      url = "https://nix-community.github.io/stylix/";
+	            }
+		    {
+                      name = "Tinted Gallery";
+		      url = "https://tinted-theming.github.io/tinted-gallery/";
+		    }
+	          ];
+	        }
+	      ];
+	    }
+	  ];
+	};
       };
     };
   };
 
-  stylix.targets.firefox.profileNames = [ "default" ];
+  stylix.targets.firefox = {
+    colorTheme.enable = true;
+    profileNames = [ "default" ];
+  };
 }

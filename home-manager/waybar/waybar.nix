@@ -13,7 +13,7 @@
     enable = true;
     systemd.enable = true;
     settings = [ config ];
-    style = '' 
+    style = lib.mkAfter '' 
 * {
   font-family: "Maple Mono NF";
   font-size: 14px;
@@ -32,6 +32,7 @@ window#waybar {
   background-color: @base00;
   border: 1px solid @base03;
   border-radius: 8px;
+  opacity: 0.9;
   padding: 4px;
   margin: 8px 8px 0 8px;
 }

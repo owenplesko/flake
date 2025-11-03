@@ -15,7 +15,7 @@
   ]; 
   
   nixpkgs = {
-    overlays = [ ];
+    overlays = [ inputs.nur.overlays.default ];
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
@@ -33,9 +33,10 @@
 
   home.packages = with pkgs; [
     vlc
-    discord
     spotify
     neofetch
+    nil
+    alejandra
 
     # Scripts
     (writeShellScriptBin "rebuild" ''
@@ -71,6 +72,8 @@
 	    shell = "${pkgs.zsh}/bin/zsh";
           };
   };  
+
+  programs.vesktop.enable = true;
  
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

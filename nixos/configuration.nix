@@ -79,9 +79,9 @@
 
   stylix = {
     enable = true;
-    polarity = "dark";
     image = ../assets/backgrounds/pixel_galaxy.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/moonlight.yaml";
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml"; 
     fonts = {
       monospace = {
         package = pkgs.maple-mono.NF-unhinted;
