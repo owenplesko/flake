@@ -1,32 +1,29 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
-}: 
-let
+}: let
   modifier = "Mod4";
-in
-{
+in {
   wayland.windowManager.sway = {
-    enable = true; 
+    enable = true;
     config = {
       inherit modifier;
       output."DP-1".mode = "3440x1440@174.962Hz";
       terminal = "kitty";
       keybindings = lib.mkOptionDefault {
-        "${config.wayland.windowManager.sway.config.modifier}+space" = "exec ${pkgs.wofi}/bin/wofi --show drun"; 
-	"${config.wayland.windowManager.sway.config.modifier}+d" = "nop";
+        "${config.wayland.windowManager.sway.config.modifier}+space" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+        "${config.wayland.windowManager.sway.config.modifier}+d" = "nop";
       };
-      bars = [ { command = "\${pkgs.waybar}/bin/waybar"; } ];
+      bars = [{command = "\${pkgs.waybar}/bin/waybar";}];
       focus.followMouse = false;
       startup = [
         {command = "firefox";}
-	{command = "kitty";}
+        {command = "kitty";}
       ];
       gaps = {
-	inner = 8;
+        inner = 8;
       };
     };
     systemd = {

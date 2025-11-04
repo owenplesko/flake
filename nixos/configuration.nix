@@ -43,11 +43,11 @@
     };
 
     # Opinionated: disable channels
-    channel.enable = false;  
+    channel.enable = false;
 
     # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   # Bootloader
@@ -63,14 +63,14 @@
     settings = {
       default_session = {
         command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
-	user = "greeter";
-      }; 
+        user = "greeter";
+      };
     };
   };
 
   # Timezone and locale
   time.timeZone = "America/New_York";
-  i18n.defaultLocale = "en_US.UTF-8"; 
+  i18n.defaultLocale = "en_US.UTF-8";
 
   fonts.packages = with pkgs; [
     maple-mono.NF-unhinted
@@ -81,7 +81,7 @@
     enable = true;
     image = ../assets/backgrounds/pixel_galaxy.png;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml"; 
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
     fonts = {
       monospace = {
         package = pkgs.maple-mono.NF-unhinted;
@@ -98,7 +98,7 @@
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -110,19 +110,19 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  }; 
+  };
 
   # System Packages
   environment.systemPackages = with pkgs; [
     neovim
     git
     bat
-    xclip 
+    xclip
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer 
-  ]; 
+    mako # notification system developed by swaywm maintainer
+  ];
 
   # System Programs
   programs.steam = {
@@ -159,7 +159,7 @@
   # Setup home-manager
   home-manager = {
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       owen = import ../home-manager/home.nix;
     };

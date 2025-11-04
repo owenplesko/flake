@@ -1,21 +1,19 @@
 {
   inputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
-  imports = [ 
-    ./waybar/waybar.nix 
+  imports = [
+    ./waybar/waybar.nix
     ./wofi/wofi.nix
     ./sway.nix
     ./nvim/nvim.nix
     ./obsidian.nix
     ./firefox.nix
-  ]; 
-  
+  ];
+
   nixpkgs = {
-    overlays = [ inputs.nur.overlays.default ];
+    overlays = [inputs.nur.overlays.default];
     config = {
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
@@ -23,13 +21,13 @@
     };
   };
 
-  programs.home-manager.enable = true; 
+  programs.home-manager.enable = true;
 
   home = {
     username = "owen";
     homeDirectory = "/home/owen";
     stateVersion = "23.05";
-  };  
+  };
 
   home.packages = with pkgs; [
     vlc
@@ -37,21 +35,22 @@
     neofetch
     nil
     alejandra
+    lua-language-server
 
     # Scripts
     (writeShellScriptBin "rebuild" ''
       #!${bash}/bin/bash
       sudo nixos-rebuild switch --flake /etc/nixos#nixos
-      '')
-  ];  
+    '')
+  ];
 
   programs.git = {
-	  enable = true;
-	  settings = {
-		  user.name = "owen";
-		  user.email = "owenplesko@gmail.com";
-		  safe.directory = [ "/etc/nixos" ];
-	  };
+    enable = true;
+    settings = {
+      user.name = "owen";
+      user.email = "owenplesko@gmail.com";
+      safe.directory = ["/etc/nixos"];
+    };
   };
 
   programs.zsh = {
@@ -67,14 +66,14 @@
   };
 
   programs.kitty = {
-	  enable = true;
-          settings = {
-	    shell = "${pkgs.zsh}/bin/zsh";
-          };
-  };  
+    enable = true;
+    settings = {
+      shell = "${pkgs.zsh}/bin/zsh";
+    };
+  };
 
   programs.vesktop.enable = true;
- 
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
