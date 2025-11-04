@@ -132,17 +132,7 @@
 
   # NVidia drivers
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    open = true;
-    modesetting.enable = true;
-  };
-  environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_RENDERER = "vulkan";
-  };
+  hardware.nvidia.open = true;
 
   # Host
   networking.hostName = "nixos";

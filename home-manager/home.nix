@@ -4,11 +4,10 @@
   ...
 }: {
   imports = [
+    ./hyprland.nix
     ./waybar/waybar.nix
     ./wofi/wofi.nix
-    ./sway.nix
     ./nvim/nvim.nix
-    ./obsidian.nix
     ./firefox.nix
   ];
 
@@ -33,9 +32,6 @@
     vlc
     spotify
     neofetch
-    nil
-    alejandra
-    lua-language-server
 
     # Scripts
     (writeShellScriptBin "rebuild" ''

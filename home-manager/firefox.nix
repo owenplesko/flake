@@ -28,6 +28,10 @@
                   name = "Nix Resources";
                   bookmarks = [
                     {
+                      name = "Nix Pkgs";
+                      url = "https://search.nixos.org/packages";
+                    }
+                    {
                       name = "Home Manager";
                       url = "https://nix-community.github.io/home-manager/options.xhtml";
                     }

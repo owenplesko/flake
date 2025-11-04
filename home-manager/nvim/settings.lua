@@ -1,7 +1,7 @@
-vim.opt.clipboard = 'unnamedplus'  -- use system keyboard for yank
+vim.opt.clipboard = 'unnamedplus' -- use system keyboard for yank
 
-vim.opt.nu = true                  -- set line numbers
-vim.opt.relativenumber = true      -- use relative line numbers
+vim.opt.nu = true                 -- set line numbers
+vim.opt.relativenumber = true     -- use relative line numbers
 
 -- set tab size to 2 spaces
 vim.opt.tabstop = 2
@@ -17,9 +17,9 @@ vim.opt.incsearch = true -- incremental search
 vim.opt.termguicolors = true
 
 vim.diagnostic.config({
-  virtual_text = true,       -- show inline errors
-  signs = true,              -- show signs in the gutter
-  underline = true,          -- underline errors
-  update_in_insert = false,  -- don't update while typing
-  severity_sort = true,      -- show most severe first
+  virtual_text = true,      -- show inline errors
+  signs = true,             -- show signs in the gutter
+  underline = true,         -- underline errors
+  update_in_insert = false, -- don't update while typing
+  severity_sort = true,     -- show most severe first
 })

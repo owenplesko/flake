@@ -1,7 +1,13 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    nil
+    alejandra
+    lua-language-server
+    gopls
+    typescript
+    typescript-language-server
+  ];
+
   programs.neovim = {
     enable = true;
 
@@ -11,13 +17,10 @@
 
     plugins = with pkgs.vimPlugins; [
       mini-nvim
-
       telescope-nvim
       telescope-fzf-native-nvim
-
-      nvim-lspconfig
+      render-markdown-nvim
       nvim-cmp
-
       nvim-treesitter
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-nix
