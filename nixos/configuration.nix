@@ -62,7 +62,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'sway --unsupported-gpu'";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland";
         user = "greeter";
       };
     };
@@ -90,14 +90,9 @@
     };
   };
 
-  # Sway WM
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-  services.gnome.gnome-keyring.enable = true;
-  security.polkit.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Hyprland
+  programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -121,7 +116,7 @@
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
+    dunst # notification system developed by swaywm maintainer
   ];
 
   # System Programs
@@ -132,7 +127,14 @@
 
   # NVidia drivers
   hardware.graphics.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.open = true;
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_DRM_NO_MODIFIERS = "1";
+    GDM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
 
   # Host
   networking.hostName = "nixos";
