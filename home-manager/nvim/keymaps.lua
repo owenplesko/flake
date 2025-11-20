@@ -1,8 +1,8 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
-vim.keymap.set('n', '<leader>e', ':Neotree<CR>')
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
+vim.keymap.set("n", "<leader>e", ":Neotree<CR>")
 
 -- Disable arrow keys
 vim.keymap.set("", "<Up>", "<Nop>")
@@ -12,12 +12,12 @@ vim.keymap.set("", "<Right>", "<Nop>")
 
 -- Format code
 vim.keymap.set("n", "<leader>f", function()
-  require("conform").format({ async = true })
+	require("conform").format({ async = true })
 end, { desc = "Format file" })
 
 -- Code actions
 vim.keymap.set("n", "<leader>ca", function()
-  vim.lsp.buf.code_action()
+	vim.lsp.buf.code_action()
 end, { desc = "View Code Actions" })
 
 local builtin = require("telescope.builtin")

@@ -7,6 +7,7 @@
     stylua
     gopls
     gofumpt
+    gotools
     typescript
     typescript-language-server
     prettierd
