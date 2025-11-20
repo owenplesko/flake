@@ -82,6 +82,12 @@
     image = ../assets/backgrounds/pixel_galaxy.png;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
+    opacity = {
+      applications = 0.8;
+      desktop = 0.8;
+      popups = 0.8;
+      terminal = 0.8;
+    };
     fonts = {
       monospace = {
         package = pkgs.maple-mono.NF-unhinted;
@@ -90,9 +96,12 @@
     };
   };
 
+  # Docker
+  virtualisation.docker.enable = true;
+
   # Hyprland
   programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  #programs.hyprland.xwayland.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -116,7 +125,7 @@
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    dunst # notification system developed by swaywm maintainer
+    dunst
   ];
 
   # System Programs
@@ -136,6 +145,9 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
+  # monitor stuff
+  hardware.i2c.enable = true;
+
   # Host
   networking.hostName = "nixos";
 
@@ -144,7 +156,7 @@
     owen = {
       initialPassword = "password";
       isNormalUser = true;
-      extraGroups = ["wheel" "networkmanager"];
+      extraGroups = ["wheel" "networkmanager" "docker" "i2c"];
     };
   };
 

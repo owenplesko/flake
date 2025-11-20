@@ -1,7 +1,7 @@
 {
     "layer": "top", 
     "spacing": 4, 
-    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": [ "clock"],
     "modules-right": ["mpd", "idle_inhibitor", "temperature", "cpu", "memory", "network", "pulseaudio", "keyboard-state"],
     "sway/workspaces": {

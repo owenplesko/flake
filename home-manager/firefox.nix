@@ -1,12 +1,17 @@
 {pkgs, ...}: {
   programs.firefox = {
     enable = true;
+    policies = {
+      DisableFirefoxAccounts = true;
+    };
 
     profiles = {
       default = {
         isDefault = true;
         settings = {
-          "browser.startup.homepage" = "https://google.com";
+          "browser.startup.homepage" = "about:blank";
+          "browser.startup.page" = 0;
+          "browser.newtabpage.enabled" = false;
           "extensions.autoDisableScopes" = 0;
           "extensions.update.autoUpdateDefault" = false;
           "extensions.update.enabled" = false;

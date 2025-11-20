@@ -17,10 +17,22 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "beekeeper-studio-5.3.4"
+      ];
     };
   };
 
   programs.home-manager.enable = true;
+
+  # cursor
+  home.pointerCursor = {
+    enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    hyprcursor.enable = true;
+  };
 
   home = {
     username = "owen";
@@ -31,7 +43,17 @@
   home.packages = with pkgs; [
     vlc
     spotify
-    neofetch
+    fastfetch
+    prismlauncher
+    beekeeper-studio
+    nemo
+    docker
+    go
+    python313
+    nodejs_24
+    gcc
+    uv
+    moonlight-qt
 
     # Scripts
     (writeShellScriptBin "rebuild" ''
@@ -52,7 +74,7 @@
   programs.zsh = {
     enable = true;
     initContent = ''
-      neofetch
+      fastfetch
       eval "$(starship init zsh)"
     '';
   };
@@ -60,6 +82,8 @@
   programs.starship = {
     enable = true;
   };
+
+  programs.lazydocker.enable = true;
 
   programs.kitty = {
     enable = true;
@@ -69,6 +93,13 @@
   };
 
   programs.vesktop.enable = true;
+
+  home.sessionVariables = {
+    FILE_MANAGER = "nemo";
+    XDG_FILE_MANAGER = "nemo";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

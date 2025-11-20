@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    ripgrep
     nil
     alejandra
     lua-language-server
@@ -18,9 +19,10 @@
     plugins = with pkgs.vimPlugins; [
       mini-nvim
       telescope-nvim
+      neo-tree-nvim
       telescope-fzf-native-nvim
       render-markdown-nvim
-      nvim-cmp
+      blink-cmp
       nvim-treesitter
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-nix
