@@ -1,3 +1,4 @@
+-- load blink and get capabilities
 local blink = require('blink.cmp')
 blink.setup()
 
@@ -7,6 +8,27 @@ local capabilities = vim.tbl_deep_extend(
   blink.get_lsp_capabilities()
 )
 
+-- setup conform code formatting
+require("conform").setup({
+  format_on_save = {
+    timeout_ms = 2000,
+    lsp_fallback = true,
+  },
+
+  formatters_by_ft = {
+    javascript = { "prettierd" },
+    javascriptreact = { "prettierd" },
+    typescript = { "prettierd" },
+    typescriptreact = { "prettierd" },
+    nix = { "alejandra" },
+    lua = { "stylua" },
+    go = { "gofumpt", "goimports" },
+  },
+})
+
+-- setup lsp servers
+
+-- nix
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "nix",
   callback = function()
@@ -14,17 +36,11 @@ vim.api.nvim_create_autocmd("FileType", {
       cmd = { "nil" },
       root_dir = vim.fs.root(0, { "flake.nix", ".git" }),
       capabilities = capabilities,
-      settings = {
-        ["nil"] = {
-          formatting = {
-            command = { "alejandra" },
-          },
-        },
-      },
     })
   end,
 })
 
+-- lua
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lua",
   callback = function()
@@ -45,6 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- go
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
   callback = function()
@@ -56,6 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- TS/JS
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   callback = function()

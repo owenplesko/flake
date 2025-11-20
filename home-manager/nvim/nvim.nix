@@ -4,9 +4,12 @@
     nil
     alejandra
     lua-language-server
+    stylua
     gopls
+    gofumpt
     typescript
     typescript-language-server
+    prettierd
   ];
 
   programs.neovim = {
@@ -23,6 +26,7 @@
       telescope-fzf-native-nvim
       render-markdown-nvim
       blink-cmp
+      conform-nvim
       nvim-treesitter
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-nix
