@@ -10,6 +10,7 @@
     gotools
     typescript
     typescript-language-server
+    tailwindcss-language-server
     prettierd
   ];
 
@@ -26,6 +27,7 @@
       neo-tree-nvim
       telescope-fzf-native-nvim
       render-markdown-nvim
+      tailwind-tools-nvim
       blink-cmp
       conform-nvim
       nvim-treesitter

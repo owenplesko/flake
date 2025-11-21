@@ -85,8 +85,51 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	callback = function()
 		vim.lsp.start({
 			cmd = { "typescript-language-server", "--stdio" },
-			root_dir = vim.fs.root(0, { "package.json", "tsconfig.json", "jsconfig.json", ".git" }),
+			root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json", ".git" }),
 			capabilities = capabilities,
+		})
+	end,
+})
+
+-- TailwindCSS
+require("tailwind-tools").setup({
+	documentColor = {
+		enabled = true,
+		kind = "inline",
+	},
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"html",
+		"css",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue",
+		"svelte",
+		"astro",
+	},
+	callback = function()
+		local root = vim.fs.root(0, {
+			"tailwind.config.js",
+			"tailwind.config.cjs",
+			"tailwind.config.mjs",
+			"tailwind.config.ts",
+			"tailwind.config.json",
+			"postcss.config.js",
+			"package.json",
+		})
+
+		if not root then
+			return
+		end
+
+		vim.lsp.start({
+			name = "tailwindcss",
+			cmd = { "tailwindcss-language-server", "--stdio" },
+			root_dir = root,
+			capabilities = vim.tbl_deep_extend("force", capabilities, { textDocument = { colorProvider = true } }),
 		})
 	end,
 })
