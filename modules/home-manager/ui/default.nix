@@ -1,0 +1,1 @@
+{...}: {imports = [./hyprland ./waybar ./wofi];}

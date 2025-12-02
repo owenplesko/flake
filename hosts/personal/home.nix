@@ -4,11 +4,8 @@
   ...
 }: {
   imports = [
-    ./hyprland.nix
-    ./waybar/waybar.nix
-    ./wofi/wofi.nix
-    ./nvim/nvim.nix
-    ./firefox.nix
+    ../../modules/home-manager/programs
+    ../../modules/home-manager/ui
   ];
 
   nixpkgs = {
@@ -58,7 +55,7 @@
     # Scripts
     (writeShellScriptBin "rebuild" ''
       #!${bash}/bin/bash
-      sudo nixos-rebuild switch --flake /etc/nixos#nixos
+      sudo nixos-rebuild switch --flake /etc/nixos#personal
     '')
   ];
 

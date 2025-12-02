@@ -1,16 +1,22 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    # required programs
     ripgrep
+
+    # language servers
     nil
-    alejandra
     lua-language-server
-    stylua
     gopls
-    gofumpt
-    gotools
     typescript
     typescript-language-server
     tailwindcss-language-server
+    pyright
+
+    # formatters
+    alejandra
+    stylua
+    gofumpt
+    gotools
     prettierd
   ];
 

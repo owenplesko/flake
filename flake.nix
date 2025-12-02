@@ -1,42 +1,32 @@
 {
-  description = "Your new nix config";
+  description = "My systems flake !";
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # Stylix
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # NUR
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    stylix,
-    nur,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      personal = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
         modules = [
-          stylix.nixosModules.stylix
-          ./nixos/configuration.nix
+          ./hosts/personal/configuration.nix
         ];
       };
     };
