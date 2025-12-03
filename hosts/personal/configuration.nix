@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
   ];
 
   # system identity
@@ -14,9 +15,11 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # nix settings
-  nixpkgs = {config.allowUnfree = true;};
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
   nix = {
-    experimental-features = "nix-command flakes";
+    settings.experimental-features = "nix-command flakes";
     channel.enable = false;
   };
 
@@ -39,9 +42,9 @@
   };
 
   # bootloader
-  boot.loader.systemd-boot = {
+  boot.loader.grub = {
     enable = true;
-    efi.canTouchEfiVariables = true;
+    device = "/dev/nvme0n1";
   };
 
   # greeter
@@ -63,7 +66,7 @@
 
   stylix = {
     enable = true;
-    image = ../assets/backgrounds/pixel_galaxy.png;
+    image = ../../assets/backgrounds/pixel_galaxy.png;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
     opacity = {
