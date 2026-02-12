@@ -30,8 +30,8 @@
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       mini-nvim
-      telescope-nvim
       neo-tree-nvim
+      telescope-nvim
       telescope-fzf-native-nvim
       render-markdown-nvim
       tailwind-tools-nvim

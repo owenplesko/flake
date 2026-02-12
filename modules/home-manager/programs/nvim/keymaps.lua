@@ -15,6 +15,9 @@ vim.keymap.set("n", "<leader>f", function()
 	require("conform").format({ async = true })
 end, { desc = "Format file" })
 
+-- Save
+vim.keymap.set("n", "<leader>s", vim.cmd.write)
+
 -- Code actions
 vim.keymap.set("n", "<leader>ca", function()
 	vim.lsp.buf.code_action()
