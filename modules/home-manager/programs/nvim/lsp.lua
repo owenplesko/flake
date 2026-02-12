@@ -1,6 +1,6 @@
--- load blink and get capabilities
-local blink = require("blink.cmp")
-blink.setup()
+-- load blink and get capabilitiesrequire("blink"
+--local blink = require("blink.cmp")
+--blink.setup()
 
 -- setup conform code formatting
 require("conform").setup({

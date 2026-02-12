@@ -23,12 +23,3 @@ vim.diagnostic.config({
 	update_in_insert = false, -- don't update while typing
 	severity_sort = true, -- show most severe first
 })
-
--- auto save
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
-	callback = function()
-		if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
-			vim.api.nvim_command("silent update")
-		end
-	end,
-})
