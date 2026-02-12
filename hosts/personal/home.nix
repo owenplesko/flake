@@ -1,7 +1,6 @@
-{...}: {
+{inputs, ...}: {
   imports = [
     ../../modules/home-manager/programs
-    ../../modules/home-manager/ui
   ];
 
   programs.home-manager.enable = true;
@@ -12,6 +11,11 @@
     stateVersion = "23.05";
   };
 
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  programs.ssh = {
+    enable = true;
+  };
+  services.ssh-agent.enable = true;
+  home.sessionVariables.SSH_AUTH_SOCK = "/run/user/1000/ssh-agent";
+
+  nixpkgs.overlays = [inputs.nur.overlays.default];
 }

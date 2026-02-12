@@ -9,23 +9,16 @@
       ]
     else [];
 in {
-  services.hypridle = {
-    enable = true;
-    settings = {
-      listener = [
-        {
-          timeout = 330;
-          on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
-          on-resume = "hyprctl dispatch dpms on && brightnessctl -r"; # screen on when activity is detected after timeout has fired.
-        }
-      ];
-    };
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
+      exec-once = [
+        "dms run"
+      ];
+
       "$mod" = "SUPER";
+
+      "splash" = false;
 
       # mouse movements
       bindm = [
@@ -47,7 +40,6 @@ in {
           "$mod, DOWN, movefocus, d"
 
           # applications
-          "$mod, SPACE, exec, wofi --show drun"
           "$mod, RETURN, exec, kitty"
         ]
         ++ declareWorkspaces 9;
@@ -55,6 +47,8 @@ in {
       monitor = [
         "DP-1,3440x1440@174.96Hz,0x0,1"
       ];
+
+      render.direct_scanout = false;
 
       general = {
         gaps_in = 4;

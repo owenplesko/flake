@@ -17,13 +17,14 @@
     };
   };
 
-  programs.vesktop.enable = true;
   programs.lazydocker.enable = true;
 
   home.packages = with pkgs; [
     # media
     vlc
     spotify
+    chromium
+    discord
 
     # cli
     fastfetch
@@ -32,13 +33,17 @@
     beekeeper-studio
     docker
     go
+    zig
     python313
     nodejs_24
     gcc
     uv
+    bun
+    rustup
 
     # games
     prismlauncher
+    gale
 
     # Scripts
     (writeShellScriptBin "rebuild" ''

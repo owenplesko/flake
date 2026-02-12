@@ -28,7 +28,9 @@ require("conform").setup({
 
 		lua = { "stylua" },
 
-		go = { "gofumpt", "goimports" },
+		go = { "gofumpt" },
+
+		rust = { "rustfmt" },
 	},
 })
 
@@ -70,10 +72,16 @@ vim.api.nvim_create_autocmd("FileType", {
 -- go
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "go",
-	callback = function()
+	callback = function(args)
+		local root = vim.fs.root(args.buf, { "go.work", "go.mod", ".git" })
+		if not root then
+			return
+		end
+
 		vim.lsp.start({
+			name = "gopls",
 			cmd = { "gopls" },
-			root_dir = vim.fs.root(0, { "go.work", "go.mod", ".git" }),
+			root_dir = root,
 			capabilities = capabilities,
 		})
 	end,
@@ -84,7 +92,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	callback = function()
 		vim.lsp.start({
-			cmd = { "typescript-language-server", "--stdio" },
+			cmd = { "bunx", "--bun", "typescript-language-server", "--stdio" },
 			root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json", ".git" }),
 			capabilities = capabilities,
 		})
@@ -155,6 +163,63 @@ vim.api.nvim_create_autocmd("FileType", {
 						typeCheckingMode = "basic", -- or "strict"
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
+					},
+				},
+			},
+		})
+	end,
+})
+
+-- zig
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "zig",
+	callback = function(args)
+		local root = vim.fs.root(args.buf, { "build.zig", "build.zig.zon", ".git" })
+		if not root then
+			return
+		end
+
+		vim.lsp.start({
+			name = "zls",
+			cmd = { "zls" },
+			root_dir = root,
+			capabilities = capabilities,
+			settings = {
+				zls = {
+					enable_snippets = true,
+					enable_inlay_hints = true,
+					enable_autofix = true,
+					warn_style = true,
+				},
+			},
+		})
+	end,
+})
+
+-- rust
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function(args)
+		local root = vim.fs.root(args.buf, { "Cargo.toml", "rust-project.json", ".git" })
+		if not root then
+			return
+		end
+
+		vim.lsp.start({
+			name = "rust_analyzer",
+			cmd = { "rust-analyzer" },
+			root_dir = root,
+			capabilities = capabilities,
+			settings = {
+				["rust-analyzer"] = {
+					cargo = {
+						allFeatures = true,
+					},
+					checkOnSave = {
+						command = "clippy",
+					},
+					procMacro = {
+						enable = true,
 					},
 				},
 			},

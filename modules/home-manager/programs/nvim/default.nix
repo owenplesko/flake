@@ -11,6 +11,7 @@
     typescript-language-server
     tailwindcss-language-server
     pyright
+    zls
 
     # formatters
     alejandra
@@ -28,6 +29,7 @@
     vimdiffAlias = true;
 
     plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
       mini-nvim
       telescope-nvim
       neo-tree-nvim

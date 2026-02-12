@@ -1,5 +1,9 @@
 {pkgs, ...}: {
-  imports = [./hyprland ./waybar ./wofi];
+  imports = [
+    ./hyprland
+    #./waybar
+    #./wofi
+  ];
 
   home.pointerCursor = {
     enable = true;
