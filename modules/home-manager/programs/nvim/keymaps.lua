@@ -22,6 +22,8 @@ vim.keymap.set("n", "<leader>s", vim.cmd.write)
 vim.keymap.set("n", "<leader>ca", function()
 	vim.lsp.buf.code_action()
 end, { desc = "View Code Actions" })
+vim.keymap.del("n", "grn")
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP Definition" })
 
