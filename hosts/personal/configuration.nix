@@ -51,24 +51,6 @@
   services.desktopManager.cosmic.enable = true;
   services.system76-scheduler.enable = true;
 
-  # shell
-  #programs.dms-shell = {
-  #enable = true;
-  #enableSystemMonitoring = true;
-  #enableClipboard = true;
-  #enableVPN = true;
-  #enableDynamicTheming = true;
-  #enableAudioWavelength = true;
-  #enableCalendarEvents = true;
-  #};
-
-  # greeter
-  #services.displayManager.dms-greeter = {
-  #enable = true;
-  #compositor.name = "hyprland";
-  #configHome = "/home/owen";
-  #};
-
   # style
   fonts.packages = with pkgs; [
     maple-mono.NF-unhinted
@@ -80,12 +62,6 @@
     image = ../../assets/backgrounds/pixel_galaxy.png;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-    opacity = {
-      applications = 0.8;
-      desktop = 0.8;
-      popups = 0.8;
-      terminal = 0.8;
-    };
     fonts = {
       monospace = {
         package = pkgs.maple-mono.NF-unhinted;
