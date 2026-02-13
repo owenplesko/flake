@@ -20,6 +20,9 @@
   programs.lazydocker.enable = true;
 
   home.packages = with pkgs; [
+    # secrets
+    sops
+
     # media
     vlc
     spotify

@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
   ];
 
@@ -31,6 +32,15 @@
       owen = import ./home.nix;
     };
   };
+
+  # sops configuration
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/owen/.config/sops/age/keys.txt";
+  };
+
+  sops.secrets."github_pat" = {};
 
   # users
   users.users = {
