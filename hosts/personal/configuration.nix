@@ -33,15 +33,6 @@
     };
   };
 
-  # sops configuration
-  sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/owen/.config/sops/age/keys.txt";
-  };
-
-  sops.secrets."github_pat" = {};
-
   # users
   users.users = {
     owen = {
