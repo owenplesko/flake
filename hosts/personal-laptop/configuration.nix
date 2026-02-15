@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.darwinModules.home-manager
   ];
 
   nixpkgs = {
@@ -17,13 +17,19 @@
     channel.enable = false;
   };
 
+  # users
+ system.primaryUser = "owen";
+
+  users.users.owen = {
+    home = "/Users/owen";
+    shell = pkgs.zsh;
+  };
+
   # home-manager integration
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs;};
-    users = {
-      owen = import ./home.nix;
-    };
+    users.owen = import ./home.nix;
   };
 
   system.stateVersion = 6;
