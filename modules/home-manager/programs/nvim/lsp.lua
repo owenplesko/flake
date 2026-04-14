@@ -31,7 +31,7 @@ require("conform").setup({
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("gopls")
-vim.lsp.enable("tsgo")
+vim.lsp.enable("ts_ls")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("pyright")
 vim.lsp.enable("zls")

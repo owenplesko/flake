@@ -7,7 +7,7 @@
     nil
     lua-language-server
     gopls
-    typescript-go
+    typescript-language-server
     tailwindcss-language-server
     pyright
     zls
