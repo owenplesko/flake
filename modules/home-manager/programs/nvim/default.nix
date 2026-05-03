@@ -16,7 +16,6 @@
     alejandra
     stylua
     gofumpt
-    gotools
     prettierd
   ];
 
@@ -53,7 +52,7 @@
       ]))
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./keymaps.lua}
       ${builtins.readFile ./settings.lua}
       ${builtins.readFile ./lsp.lua}

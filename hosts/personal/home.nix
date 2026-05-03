@@ -29,7 +29,7 @@
   };
 
   programs.git = {
-    extraConfig = {
+    settings = {
       credential.helper = "!f() { echo username=YOUR_GITHUB_USERNAME; echo password=$(cat ~/.config/git/github-pat); }; f";
     };
   };
