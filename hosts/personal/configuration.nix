@@ -75,7 +75,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    ldacbt
   ];
 
   virtualisation.docker.enable = true;
