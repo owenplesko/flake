@@ -43,7 +43,7 @@
     uv
     bun
     rustup
-    aws-workspaces
+    #aws-workspaces
 
     # games
     prismlauncher
