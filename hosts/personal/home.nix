@@ -34,5 +34,8 @@
     };
   };
 
+  # silence warning
+  gtk.gtk4.theme = config.gtk.theme;
+
   nixpkgs.overlays = [inputs.nur.overlays.default];
 }
