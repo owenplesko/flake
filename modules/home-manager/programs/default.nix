@@ -52,6 +52,11 @@
     # Scripts
     (writeShellScriptBin "rebuild" ''
       #!${bash}/bin/bash
+      timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+      cd ~/nixos
+      git add .
+      git commit -m "$timestamp $1"
+      git push
       sudo nixos-rebuild switch --flake /etc/nixos#personal
     '')
   ];
