@@ -7,10 +7,10 @@
   imports = [
     ../../modules/home-manager/firefox
     ../../modules/home-manager/nvim
-    ../../git
-    ../../starship
-    ../../zsh
-    ../../kitty
+    ../../modules/home-manager/git
+    ../../modules/home-manager/starship
+    ../../modules/home-manager/zsh
+    ../../modules/home-manager/kitty
     inputs.sops-nix.homeManagerModules.sops
   ];
 
