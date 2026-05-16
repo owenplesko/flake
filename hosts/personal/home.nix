@@ -1,10 +1,16 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }: {
   imports = [
-    ../../modules/home-manager/programs
+    ../../modules/home-manager/firefox
+    ../../modules/home-manager/nvim
+    ../../git
+    ../../starship
+    ../../zsh
+    ../../kitty
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -37,5 +43,55 @@
   # silence warning
   gtk.gtk4.theme = config.gtk.theme;
 
-  nixpkgs.overlays = [inputs.nur.overlays.default];
+  nixpkgs = {
+    overlays = [inputs.nur.overlays.default];
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "beekeeper-studio-5.3.4"
+      ];
+    };
+  };
+
+  home.packages = with pkgs; [
+    # secrets
+    sops
+
+    # media
+    vlc
+    spotify
+    chromium
+    discord
+
+    # cli
+    fastfetch
+
+    # dev
+    beekeeper-studio
+    docker
+    go
+    zig
+    python313
+    nodejs_24
+    gcc
+    uv
+    bun
+    rustup
+    #aws-workspaces
+
+    # games
+    prismlauncher
+    gale
+
+    # Scripts
+    (writeShellScriptBin "rebuild" ''
+      #!${bash}/bin/bash
+      timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+      cd ~/nixos
+      git add .
+      git commit -m "$timestamp $1"
+      git push
+      sudo nixos-rebuild switch --flake /etc/nixos#personal
+    '')
+  ];
 }
