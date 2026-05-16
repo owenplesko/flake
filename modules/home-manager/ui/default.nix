@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./hyprland
     #./waybar
@@ -12,6 +16,8 @@
     size = 24;
     hyprcursor.enable = true;
   };
+
+  gtk.gtk4.theme = config.gtk.theme;
 
   home.packages = with pkgs; [
     nemo
