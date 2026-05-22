@@ -94,4 +94,8 @@
       sudo nixos-rebuild switch --flake /etc/nixos#personal
     '')
   ];
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+  ];
 }
