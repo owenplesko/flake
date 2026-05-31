@@ -34,6 +34,13 @@
           ./hosts/personal/configuration.nix
         ];
       };
+      server = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/server/configuration.nix
+        ];
+      };
     };
   };
 }
