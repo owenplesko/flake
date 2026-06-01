@@ -24,6 +24,8 @@
       secrets = {
         "frugal/username" = {};
         "frugal/password" = {};
+        "sabnzdb/api_key" = {};
+        "sabnzdb/nzb_key" = {};
       };
     };
   };

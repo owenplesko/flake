@@ -110,6 +110,9 @@
       [[frugal-us-east]]
       username = ${config.sops.placeholder."frugal/username"}
       password = ${config.sops.placeholder."frugal/password"}
+      [misc]
+      api_key = ${config.sops.placeholder."sabnzdb/api_key"}
+      nzb_key = ${config.sops.placeholder."sabnzdb/nzb_key"}
     '';
     owner = "sabnzbd";
     mode = "0400";
@@ -133,6 +136,7 @@
           host = "news.frugalusenet.com";
           ssl = true;
           ssl_verify = "strict";
+          connections = 250;
         };
       };
     };
