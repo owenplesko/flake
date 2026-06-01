@@ -128,6 +128,7 @@
         host = "0.0.0.0";
         download_dir = "/mnt/media/Downloads/incomplete";
         complete_dir = "/mnt/media/Downloads/complete";
+        permissions = "775";
       };
       servers = {
         "frugal-us-east" = {
