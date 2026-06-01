@@ -69,7 +69,7 @@ in {
   config = lib.mkIf cfg.enable {
     sops = {
       age.keyFile = cfg.keyFile;
-      secrets = resolveSecrets structure;
+      secrets = resolveSecrets;
     };
   };
 }
