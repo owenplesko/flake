@@ -78,11 +78,14 @@
   users.users."owen" = {
     isNormalUser = true;
     description = "owen plesko";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "media"];
   };
 
   # Define media services
   users.groups.media = {};
+  systemd.tmpfiles.rules = [
+    "z /mnt/media 0775 root media - -"
+  ];
 
   services.sabnzbd = {
     enable = true;
