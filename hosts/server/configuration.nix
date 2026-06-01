@@ -110,11 +110,6 @@
     mode = "0400";
   };
 
-  systemd.services.sabnzbd = {
-    after = ["sops-install-secrets.service"];
-    requires = ["sops-install-secrets.service"];
-  };
-
   services.sabnzbd = {
     enable = true;
     group = "media";
