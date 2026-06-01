@@ -137,7 +137,15 @@
           host = "news.frugalusenet.com";
           ssl = true;
           ssl_verify = "strict";
-          connections = 250;
+          connections = 50;
+        };
+        "frugal-bonus" = {
+          name = "Frugal Bonus";
+          displayname = "Frugal Bonus";
+          host = "bonus.frugalusenet.com";
+          ssl = true;
+          ssl_verify = "strict";
+          connections = 10;
         };
       };
     };
