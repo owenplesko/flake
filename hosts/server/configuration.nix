@@ -63,6 +63,8 @@
       /mnt/media 192.168.1.0/24(rw,sync,no_subtree_check)
     '';
   };
+  networking.firewall.allowedTCPPorts = [2049];
+  networking.firewall.allowedUDPPorts = [2049];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."owen" = {
