@@ -141,7 +141,6 @@
   services.prowlarr = {
     enable = true;
     openFirewall = true;
-    group = "media";
   };
 
   services.radarr = {
