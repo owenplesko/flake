@@ -34,10 +34,13 @@
     (name: enabled: enabled && structure ? ${name})
     cfg.secretFiles;
 
-  # Helper function for transforming secretFiles to sops-nix config.
+  # Helper function for transforming enabled secret keys into sops-nix config.
   resolveSecrets =
     lib.concatMapAttrs (
-      fileName: fileConfig:
+      fileName: _: let
+        # Look up the actual file configurations from our static structure
+        fileConfig = structure.${fileName};
+      in
         builtins.mapAttrs (
           secretName: secretOpts:
             secretOpts // {sopsFile = fileConfig.path;}
