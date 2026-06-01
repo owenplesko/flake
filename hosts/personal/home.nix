@@ -66,6 +66,9 @@
     # cli
     fastfetch
 
+    # remote desktop
+    rustdesk
+
     # dev
     beekeeper-studio
     docker
