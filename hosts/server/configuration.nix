@@ -110,6 +110,7 @@
       servers = {
         "frugal-us-east" = {
           name = "Frugal US East";
+          displayname = "Frugal US East";
           host = "news.frugalusenet.com";
           ssl = true;
           ssl_verify = "strict";
