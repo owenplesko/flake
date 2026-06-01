@@ -111,8 +111,8 @@
   };
 
   systemd.services.sabnzbd = {
-    after = ["sops-nix.service"];
-    requires = ["sops-nix.service"];
+    after = ["sops-install-secrets.service"];
+    requires = ["sops-install-secrets.service"];
   };
 
   services.sabnzbd = {
