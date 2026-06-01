@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos/secrets.nix
     inputs.home-manager.nixosModules.home-manager
-    inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
   ];
 
@@ -39,6 +39,16 @@
       initialPassword = "password";
       isNormalUser = true;
       extraGroups = ["video" "wheel" "networkmanager" "docker"];
+    };
+  };
+
+  # secrets
+  services.secrets = {
+    enable = true;
+    keyFile = "/etc/sops/age/keys.txt";
+    secretFiles = {
+      shared = true;
+      desktop01 = true;
     };
   };
 

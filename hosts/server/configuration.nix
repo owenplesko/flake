@@ -83,20 +83,27 @@
     extraGroups = ["networkmanager" "wheel" "media"];
   };
 
+  services.secrets = {
+    enable = true;
+    keyFile = "/etc/sops/age/keys.txt";
+    secretFiles = {
+      shared = true;
+      server01 = true;
+    };
+  };
+
   # Define media services
   users.groups.media = {};
   systemd.tmpfiles.rules = [
     "z /mnt/media 0775 root media - -"
   ];
 
-  sops.secrets.frugal_username = {};
-  sops.secrets.frugal_password = {};
   sops.templates."sabnzbd-secrets.ini" = {
     content = ''
       [servers]
       [[frugal-us-east]]
-      username = ${config.sops.placeholder.frugal_username}
-      password = ${config.sops.placeholder.frugal_password}
+      username = ${config.sops.placeholder."frugal/username"}
+      password = ${config.sops.placeholder."frugal/password"}
     '';
     owner = "sabnzbd";
     mode = "0400";

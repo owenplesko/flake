@@ -1,7 +1,16 @@
 keys:
-  - &primary age1pnc56l8hnzvrptsuxpehazgqs9nympd8x4crgd9q3dg446js0gkqtqwx9u
+  - &admin age1pnc56l8hnzvrptsuxpehazgqs9nympd8x4crgd9q3dg446js0gkqtqwx9u
+  - &desktop01 age1pnc56l8hnzvrptsuxpehazgqs9nympd8x4crgd9q3dg446js0gkqtqwx9u
 creation_rules:
   - path_reges: secrets/secrets.yaml$
     key_groups:
-      - age:
-          - *primary
+      - age: [*desktop01]
+  - path_reges: secrets/shared.yaml$
+    key_groups:
+      - age: [*admin]
+  - path_reges: secrets/desktop01.yaml$
+    key_groups:
+      - age: [*admin, *desktop01]
+  - path_reges: secrets/server01.yaml$
+    key_groups:
+      - age: [*admin]
