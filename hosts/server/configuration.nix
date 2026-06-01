@@ -54,9 +54,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
+  # Enable the Xfce Desktop Environment.
+  services.xserver.desktopManager.xfce.enable = true;
+  services.xrdp.defaultWindowManager = "xfce4-session";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -113,7 +113,6 @@
   # enable remote desktop server
   services.xrdp = {
     enable = true;
-    defaultWindowManager = "cinnamon-session";
     openFirewall = true;
   };
 
