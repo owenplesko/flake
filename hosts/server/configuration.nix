@@ -100,6 +100,11 @@
     mode = "0400";
   };
 
+  systemd.services.sabnzbd = {
+    after = ["sops-nix.service"];
+    requires = ["sops-nix.service"];
+  };
+
   services.sabnzbd = {
     enable = true;
     group = "media";
