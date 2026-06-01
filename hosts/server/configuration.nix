@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  sops,
   ...
 }: {
   imports = [
@@ -87,10 +88,33 @@
     "z /mnt/media 0775 root media - -"
   ];
 
+  sops.templates."sabnzbd-secrets.ini" = {
+    content = ''
+      [servers]
+      [[frugal-us-east]]
+      username = ${sops.placeholder."frugal_username"}
+      password = ${sops.placeholder."frugal_password"}
+    '';
+    owner = "sabnzbd";
+    mode = "0400";
+  };
+
   services.sabnzbd = {
     enable = true;
     group = "media";
     openFirewall = true;
+    secretFiles = [sops.templates."sabnzbd-secrets.ini".path];
+    settings = {
+      host = "0.0.0.0";
+      servers = {
+        "frugal-us-east" = {
+          name = "Frugal US East";
+          host = "news.frugalusenet.com";
+          ssl = true;
+          ssl_verify = "strict";
+        };
+      };
+    };
   };
 
   services.prowlarr = {
