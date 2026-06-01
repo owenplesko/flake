@@ -89,12 +89,14 @@
     "z /mnt/media 0775 root media - -"
   ];
 
+  sops.secrets.frugal_username = {};
+  sops.secrets.frugal_password = {};
   sops.templates."sabnzbd-secrets.ini" = {
     content = ''
       [servers]
       [[frugal-us-east]]
-      username = ${config.sops.placeholder."frugal_username"}
-      password = ${config.sops.placeholder."frugal_password"}
+      username = ${config.sops.placeholder.frugal_username}
+      password = ${config.sops.placeholder.frugal_password}
     '';
     owner = "sabnzbd";
     mode = "0400";
