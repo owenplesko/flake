@@ -6,9 +6,6 @@ creation_rules:
   - path_reges: secrets/shared.yaml$
     key_groups:
       - age: [*admin, *desktop01, *server01]
-  - path_reges: secrets/desktop01.yaml$
-    key_groups:
-      - age: [*admin, *desktop01]
   - path_reges: secrets/server01.yaml$
     key_groups:
       - age: [*admin, *server01]
