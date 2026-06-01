@@ -59,12 +59,17 @@
   # Enable network storage
   services.nfs.server = {
     enable = true;
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
     exports = ''
       /mnt/media 192.168.1.0/24(rw,sync,no_subtree_check)
     '';
   };
-  networking.firewall.allowedTCPPorts = [2049];
-  networking.firewall.allowedUDPPorts = [2049];
+  networking.firewall = {
+    allowedTCPPorts = [111 2049 4000 4001 4002];
+    allowedUDPPorts = [111 2049 4000 4001 4002];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."owen" = {
