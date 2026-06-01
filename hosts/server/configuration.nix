@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -92,8 +93,8 @@
     content = ''
       [servers]
       [[frugal-us-east]]
-      username = ${sops.placeholder."frugal_username"}
-      password = ${sops.placeholder."frugal_password"}
+      username = ${config.sops.placeholder."frugal_username"}
+      password = ${config.sops.placeholder."frugal_password"}
     '';
     owner = "sabnzbd";
     mode = "0400";
@@ -103,7 +104,7 @@
     enable = true;
     group = "media";
     openFirewall = true;
-    secretFiles = [sops.templates."sabnzbd-secrets.ini".path];
+    secretFiles = [config.sops.templates."sabnzbd-secrets.ini".path];
     settings = {
       host = "0.0.0.0";
       servers = {
