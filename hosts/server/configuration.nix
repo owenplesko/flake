@@ -97,6 +97,8 @@
   users.groups.media = {};
   systemd.tmpfiles.rules = [
     "z /mnt/media 0775 root media - -"
+    "d /mnt/media/Downloads/incomplete 0775 sabnzbd media - -"
+    "d /mnt/media/Downloads/complete   0775 sabnzbd media - -"
   ];
 
   sops.templates."sabnzbd-secrets.ini" = {
@@ -116,7 +118,11 @@
     openFirewall = true;
     secretFiles = [config.sops.templates."sabnzbd-secrets.ini".path];
     settings = {
-      host = "0.0.0.0";
+      misc = {
+        host = "0.0.0.0";
+        download_dir = "/mnt/media/Downloads/incomplete";
+        complete_dir = "/mnt/media/Downloads/complete";
+      };
       servers = {
         "frugal-us-east" = {
           name = "Frugal US East";
