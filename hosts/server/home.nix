@@ -1,4 +1,3 @@
-
 {
   inputs,
   config,
@@ -57,8 +56,8 @@
       cd /home/owen/nixos
       git add .
       git commit -m "$timestamp $1"
+      git push
       sudo nixos-rebuild switch --flake /home/owen/nixos#server
     '')
   ];
-
 }
