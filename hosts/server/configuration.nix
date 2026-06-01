@@ -96,12 +96,12 @@
   # Define media services
   users.groups.media = {};
   systemd.tmpfiles.rules = [
-    "z /mnt/media 0775 root media - -"
-    "d /mnt/media/Downloads/incomplete 0775 media - -"
-    "d /mnt/media/Downloads/complete   0775 media - -"
-    "d /mnt/media/Movies 0775 media - -"
-    "d /mnt/media/Shows 0775 media - -"
-    "d /mnt/media/Pictures 0775 media - -"
+    "z /mnt/media                      0775 - media - -"
+    "d /mnt/media/Downloads/incomplete 0775 - media - -"
+    "d /mnt/media/Downloads/complete   0775 - media - -"
+    "d /mnt/media/Movies               0775 - media - -"
+    "d /mnt/media/Shows                0775 - media - -"
+    "d /mnt/media/Pictures             0775 - media - -"
   ];
 
   sops.templates."sabnzbd-secrets.ini" = {
