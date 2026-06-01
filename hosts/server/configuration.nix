@@ -81,6 +81,38 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
+  # Define media services
+  users.groups.media = {};
+
+  services.sabnzbd = {
+    enable = true;
+    group = "media";
+    openFirewall = true;
+  };
+
+  services.prowlarr = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.radarr = {
+    enable = true;
+    openFirewall = true;
+    group = "media";
+  };
+
+  services.sonarr = {
+    enable = true;
+    openFirewall = true;
+    group = "media";
+  };
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+    group = "media";
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
