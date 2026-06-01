@@ -57,18 +57,17 @@
   };
 
   # Enable network storage
-  services.nfs.server = {
+  services.samba = {
     enable = true;
-    lockdPort = 4001;
-    mountdPort = 4002;
-    statdPort = 4000;
-    exports = ''
-      /mnt/media 192.168.1.0/24(rw,sync,no_subtree_check)
-    '';
-  };
-  networking.firewall = {
-    allowedTCPPorts = [111 2049 4000 4001 4002];
-    allowedUDPPorts = [111 2049 4000 4001 4002];
+    openFirewall = true;
+    shares = {
+      media = {
+        path = "/mnt/media";
+        browseable = "yes";
+        writable = "yes";
+        "valid users" = "owen";
+      };
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
