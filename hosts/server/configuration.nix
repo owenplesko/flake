@@ -97,8 +97,11 @@
   users.groups.media = {};
   systemd.tmpfiles.rules = [
     "z /mnt/media 0775 root media - -"
-    "d /mnt/media/Downloads/incomplete 0775 sabnzbd media - -"
-    "d /mnt/media/Downloads/complete   0775 sabnzbd media - -"
+    "d /mnt/media/Downloads/incomplete 0775 media - -"
+    "d /mnt/media/Downloads/complete   0775 media - -"
+    "d /mnt/media/Movies 0775 media - -"
+    "d /mnt/media/Shows 0775 media - -"
+    "d /mnt/media/Pictures 0775 media - -"
   ];
 
   sops.templates."sabnzbd-secrets.ini" = {
@@ -114,8 +117,8 @@
 
   services.sabnzbd = {
     enable = true;
-    group = "media";
     openFirewall = true;
+    group = "media";
     secretFiles = [config.sops.templates."sabnzbd-secrets.ini".path];
     settings = {
       misc = {
@@ -138,6 +141,7 @@
   services.prowlarr = {
     enable = true;
     openFirewall = true;
+    group = "media";
   };
 
   services.radarr = {
