@@ -1,7 +1,7 @@
-
 {
   inputs,
   config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -9,6 +9,17 @@
   ];
 
   programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    nodejs_24
+    bun
+
+    # Scripts
+    (writeShellScriptBin "rebuild" ''
+      #!${bash}/bin/bash
+      sudo darwin-rebuild switch --flake .#Owens-MacBook
+    '')
+  ];
 
   home = {
     username = "owen";
