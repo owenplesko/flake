@@ -60,7 +60,7 @@
   services.samba = {
     enable = true;
     openFirewall = true;
-    shares = {
+    settings = {
       media = {
         path = "/mnt/media";
         browseable = "yes";
@@ -68,6 +68,10 @@
         "valid users" = "owen";
       };
     };
+  };
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
