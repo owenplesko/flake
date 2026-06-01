@@ -146,6 +146,7 @@
           ssl = true;
           ssl_verify = "strict";
           connections = 10;
+          priority = 1;
         };
       };
     };
