@@ -111,7 +111,11 @@
   ];
 
   # enable remote desktop server
-  services.rustdesk-server.enable = true;
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "cinnamon-session";
+    openFirewall = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

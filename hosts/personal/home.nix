@@ -66,8 +66,8 @@
     # cli
     fastfetch
 
-    # remote desktop
-    rustdesk
+    # rdp client
+    remmina
 
     # dev
     beekeeper-studio
@@ -80,7 +80,6 @@
     uv
     bun
     rustup
-    #aws-workspaces
 
     # games
     prismlauncher
