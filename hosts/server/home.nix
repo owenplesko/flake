@@ -21,11 +21,6 @@
     stateVersion = "23.05";
   };
 
-  xsession = {
-    enable = true;
-    windowManager.command = "xfce4-session";
-  };
-
   # sops configuration
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
