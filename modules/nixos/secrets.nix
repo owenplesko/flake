@@ -11,7 +11,7 @@
     shared = {
       path = ../../secrets/shared.yaml;
       secrets = {
-        "github/pat" = {};
+        "github/pat" = {owner = "owen";};
       };
     };
     desktop01 = {
