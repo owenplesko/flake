@@ -65,7 +65,7 @@
     openFirewall = true;
     settings = {
       media = {
-        path = "/mnt/media";
+        path = "/media";
         browseable = "yes";
         writable = "yes";
         "valid users" = "owen";
@@ -96,12 +96,11 @@
   # Define media services
   users.groups.media = {};
   systemd.tmpfiles.rules = [
-    "z /mnt/media                      0775 - media - -"
-    "d /mnt/media/Downloads/incomplete 0775 - media - -"
-    "d /mnt/media/Downloads/complete   0775 - media - -"
-    "d /mnt/media/Movies               0775 - media - -"
-    "d /mnt/media/Shows                0775 - media - -"
-    "d /mnt/media/Pictures             0775 - media - -"
+    "d /media/Downloads/incomplete 0775 - media - -"
+    "d /media/Downloads/complete   0775 - media - -"
+    "d /media/Movies               0775 - media - -"
+    "d /media/Shows                0775 - media - -"
+    "d /media/Pictures             0775 - media - -"
   ];
 
   sops.templates."sabnzbd-secrets.ini" = {
@@ -126,8 +125,8 @@
     settings = {
       misc = {
         host = "0.0.0.0";
-        download_dir = "/mnt/media/Downloads/incomplete";
-        complete_dir = "/mnt/media/Downloads/complete";
+        download_dir = "/media/Downloads/incomplete";
+        complete_dir = "/media/Downloads/complete";
         permissions = "775";
       };
       servers = {
