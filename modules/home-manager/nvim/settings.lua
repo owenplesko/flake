@@ -23,3 +23,16 @@ vim.diagnostic.config({
 	update_in_insert = false, -- don't update while typing
 	severity_sort = true, -- show most severe first
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		-- Choose soft wrap settings:
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+
+		-- Navigate visual rows instead of logical file rows
+		vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+		vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+	end,
+})
