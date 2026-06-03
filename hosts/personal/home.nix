@@ -34,9 +34,10 @@
     };
   };
 
+  services.sunshine.enable = true;
+
   home.packages = with pkgs; [
     # media
-    sunshine
     vlc
     spotify
     chromium
