@@ -89,13 +89,6 @@
 
   virtualisation.docker.enable = true;
 
-  services.sunshine = {
-    enable = true;
-    autoStart = true; # optional: starts Sunshine automatically on login
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
