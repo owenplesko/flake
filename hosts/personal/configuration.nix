@@ -89,6 +89,8 @@
 
   virtualisation.docker.enable = true;
 
+  services.sunshine.enable = true;
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;

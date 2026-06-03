@@ -34,8 +34,6 @@
     };
   };
 
-  services.sunshine.enable = true;
-
   home.packages = with pkgs; [
     # media
     vlc
