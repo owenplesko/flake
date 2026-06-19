@@ -80,7 +80,7 @@
   # Home assistant
   services.home-assistant = {
     enable = true;
-    openFirewallForComponents = true;
+    openFirewall = true;
     extraComponents = [
       "default_config"
     ];
