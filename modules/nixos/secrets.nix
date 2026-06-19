@@ -12,7 +12,7 @@
       path = ../../secrets/shared.yaml;
       secrets = {
         "github/pat" = {owner = "owen";};
-        "ha_token" = {owner = "home-assistant-matter-hub";};
+        "ha_token" = {};
       };
     };
     desktop01 = {
