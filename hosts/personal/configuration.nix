@@ -89,6 +89,15 @@
 
   virtualisation.docker.enable = true;
 
+  services.home-assistant = {
+    enable = true;
+  };
+
+  services.home-assistant-matter-hub = {
+    enable = true;
+    openFirewall = true;
+  };
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
