@@ -48,6 +48,7 @@
 
     # cli
     fastfetch
+    sops
 
     # rdp client
     remmina
