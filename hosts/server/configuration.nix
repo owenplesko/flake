@@ -80,7 +80,13 @@
   # Home assistant
   services.home-assistant = {
     enable = true;
-    openFirewall = true;
+    openFirewallForComponents = true;
+    extraComponents = [
+      "default_config"
+    ];
+    config = {
+      default_config = {};
+    };
   };
 
   services.home-assistant-matter-hub = {
