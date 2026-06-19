@@ -12,6 +12,7 @@
       path = ../../secrets/shared.yaml;
       secrets = {
         "github/pat" = {owner = "owen";};
+        "ha_token" = {owner = "home-assistant-matter-hub";};
       };
     };
     desktop01 = {
@@ -26,7 +27,6 @@
         "frugal/password" = {};
         "sabnzdb/api_key" = {};
         "sabnzdb/nzb_key" = {};
-        "ha_token" = {owner = "home-assistant-matter-hub";};
       };
     };
   };
