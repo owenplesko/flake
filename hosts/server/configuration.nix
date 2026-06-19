@@ -77,6 +77,21 @@
     openFirewall = true;
   };
 
+  # Home assistant
+  services.home-assistant = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.home-assistant-matter-hub = {
+    enable = true;
+    openFirewall = true;
+    accessTokenFile = config.sops.secrets.ha_token.path;
+    settings = {
+      homeAssistantUrl = "http://127.0.0.1:8123";
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."owen" = {
     isNormalUser = true;
