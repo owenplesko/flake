@@ -11,6 +11,7 @@
     ../../modules/home-manager/starship
     ../../modules/home-manager/zsh
     ../../modules/home-manager/kitty
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   programs.home-manager.enable = true;
@@ -32,6 +33,10 @@
         "beekeeper-studio-5.3.4"
       ];
     };
+  };
+
+  sops = {
+    age.keyFile = "/etc/sops/age/keys.txt";
   };
 
   home.packages = with pkgs; [
