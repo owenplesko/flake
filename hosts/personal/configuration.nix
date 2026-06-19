@@ -96,6 +96,9 @@
   services.home-assistant-matter-hub = {
     enable = true;
     openFirewall = true;
+    settings = {
+      homeAssistantUrl = "http://127.0.0.1:8123";
+    };
   };
 
   programs.steam = {
