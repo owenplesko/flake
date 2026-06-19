@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -96,11 +97,11 @@
   services.home-assistant-matter-hub = {
     enable = true;
     openFirewall = true;
+    accessTokenFile = config.sops.secrets.ha_token.path;
     settings = {
       homeAssistantUrl = "http://127.0.0.1:8123";
     };
   };
-
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;

@@ -2,7 +2,6 @@
   config,
   lib,
   inputs,
-  pkgs,
   ...
 }: let
   cfg = config.services.secrets;
@@ -27,6 +26,7 @@
         "frugal/password" = {};
         "sabnzdb/api_key" = {};
         "sabnzdb/nzb_key" = {};
+        "ha_token" = {owner = "home-assistant-matter-hub";};
       };
     };
   };
