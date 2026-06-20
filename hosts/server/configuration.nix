@@ -79,7 +79,7 @@
 
   # Home assistant
   services.openthread-border-router = {
-    enable = true;
+    enable = false;
     backboneInterfaces = ["eno1"];
     openFirewall = true;
     radio.device = "/dev/serial/by-id/usb-Nabu_Casa_ZBT-2_E072A1DC13F4-if00";
