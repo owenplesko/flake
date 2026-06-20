@@ -91,6 +91,9 @@
     openFirewall = true;
     extraComponents = [
       "default_config"
+      "thread"
+      "matter"
+      "otbr"
     ];
     config = {
       default_config = {};
