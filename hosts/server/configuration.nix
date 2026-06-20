@@ -80,19 +80,12 @@
   # Home assistant
   services.openthread-border-router = {
     enable = true;
-
-    # 1. Bind to your primary home network interface (e.g., eth0 or enp3s0)
-    backboneInterfaces = ["eth0"];
-
-    # 2. Automatically apply system iptables firewall adjustments
+    backboneInterfaces = ["eno1"];
     openFirewall = true;
-
-    # 3. Explicitly link to your ZBT-2 USB serial port path
-    radio.device = "/dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-2_v1.0-if00-port0";
-
-    # 4. Define the exact high-speed link parameters for the ZBT-2 hardware
-    radio.url = "spinel+hdlc+uart:///dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-2_v1.0-if00-port0?uart-baudrate=460800";
+    radio.device = "/dev/serial/by-id/usb-Nabu_Casa_ZBT-2_E072A1DC13F4-if00";
+    radio.url = "spinel+hdlc+uart:///dev/serial/by-id/usb-Nabu_Casa_ZBT-2_E072A1DC13F4-if00?uart-baudrate=460800";
   };
+
   services.home-assistant = {
     enable = true;
     openFirewall = true;
