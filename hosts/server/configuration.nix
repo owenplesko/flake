@@ -78,6 +78,7 @@
   };
 
   # Home assistant
+  services.matter-server.enable = true;
   services.openthread-border-router = {
     enable = true;
     backboneInterfaces = ["eno1"];
