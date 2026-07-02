@@ -169,7 +169,7 @@
       password = ${config.sops.placeholder."frugal/password"}
       [[tweaknews-block]]
       username = ${config.sops.placeholder."tweak_news/username"}
-      password = ${config.sops.placeholder."tweak_news/password"}
+      password = "${config.sops.placeholder."tweak_news/password"}"
       [misc]
       api_key = ${config.sops.placeholder."sabnzdb/api_key"}
       nzb_key = ${config.sops.placeholder."sabnzdb/nzb_key"}
