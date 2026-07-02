@@ -198,6 +198,7 @@
           ssl = true;
           ssl_verify = "strict";
           connections = 50;
+          priority = 0;
         };
         "frugal-bonus" = {
           name = "Frugal Bonus";
@@ -215,6 +216,7 @@
           ssl = true;
           ssl_verify = "strict";
           connections = 10;
+          priority = 2;
         };
       };
     };
