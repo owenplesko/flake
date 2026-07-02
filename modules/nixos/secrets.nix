@@ -25,6 +25,8 @@
       secrets = {
         "frugal/username" = {};
         "frugal/password" = {};
+        "tweak_news/username" = {};
+        "tweak_news/password" = {};
         "sabnzdb/api_key" = {};
         "sabnzdb/nzb_key" = {};
         "ha_token" = {};

@@ -167,6 +167,9 @@
       [[frugal-us-east]]
       username = ${config.sops.placeholder."frugal/username"}
       password = ${config.sops.placeholder."frugal/password"}
+      [[tweaknews-block]]
+      username = ${config.sops.placeholder."tweak_news/username"}
+      password = ${config.sops.placeholder."tweak_news/password"}
       [misc]
       api_key = ${config.sops.placeholder."sabnzdb/api_key"}
       nzb_key = ${config.sops.placeholder."sabnzdb/nzb_key"}
@@ -204,6 +207,14 @@
           ssl_verify = "strict";
           connections = 10;
           priority = 1;
+        };
+        "tweaknews-block" = {
+          name = "TweakNews Block";
+          displayname = "TweakNews Block";
+          host = "news.tweaknews.eu";
+          ssl = true;
+          ssl_verify = "strict";
+          connections = 10;
         };
       };
     };
