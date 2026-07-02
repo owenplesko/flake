@@ -167,6 +167,9 @@
       [[frugal-us-east]]
       username = ${config.sops.placeholder."frugal/username"}
       password = ${config.sops.placeholder."frugal/password"}
+      [[frugal-bonus]]
+      username = ${config.sops.placeholder."frugal/username"}
+      password = ${config.sops.placeholder."frugal/password"}
       [[tweaknews-block]]
       username = ${config.sops.placeholder."tweak_news/username"}
       password = "${config.sops.placeholder."tweak_news/password"}"
