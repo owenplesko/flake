@@ -12,6 +12,7 @@
       path = ../../secrets/shared.yaml;
       secrets = {
         "github/pat" = {owner = "owen";};
+        "tailscale/auth_key" = {};
       };
     };
     desktop01 = {
