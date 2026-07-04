@@ -1,4 +1,3 @@
-
 {
   inputs,
   pkgs,
@@ -18,11 +17,15 @@
   };
 
   # users
- system.primaryUser = "owen";
+  system.primaryUser = "owen";
 
   users.users.owen = {
     home = "/Users/owen";
     shell = pkgs.zsh;
+  };
+
+  services.tailscale = {
+    enable = true;
   };
 
   # home-manager integration

@@ -21,6 +21,10 @@
     '')
   ];
 
+  home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = "/etc/sops/age/keys.txt";
+  };
+
   home = {
     username = "owen";
     stateVersion = "23.05";
