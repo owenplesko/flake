@@ -287,6 +287,7 @@
 
   environment.systemPackages = with pkgs; [
     git
+    chip-tool
   ];
 
   # enable remote desktop server
