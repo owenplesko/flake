@@ -34,6 +34,10 @@
       trustedInterfaces = [config.services.tailscale.interfaceName];
       # Allow the Tailscale UDP port through the firewall
       allowedUDPPorts = [config.services.tailscale.port];
+      # Allow all traffic from the Thread mesh (fd00::/8) on wpan0
+      extraInputRules = ''
+        ip6 saddr fd00::/8 iifname "wpan0" accept
+      '';
     };
   };
 
