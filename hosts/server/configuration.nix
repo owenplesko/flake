@@ -127,34 +127,7 @@
     ];
     config = {
       default_config = {};
-      "automation nixos" = [
-        {
-          alias = "white_remote_automation";
-          description = "";
-          use_blueprint = {
-            path = "jhol-byte/Ikea_bilresa_scroll_wheel.yaml";
-            input = {
-              remote = "c189216f6aa8e0bd72fe9b6bf264d72f";
-              click_action_ch1 = [
-                {
-                  type = "toggle";
-                  device_id = "4d386005ebbab66f415c041fb13c9bf9";
-                  entity_id = "a874cebeec770a3c89e542573d391ca7";
-                  domain = "light";
-                }
-              ];
-              click_action_ch2 = [
-                {
-                  type = "toggle";
-                  device_id = "227fc1e16d17a53fb7b00c15a13ef6f5";
-                  entity_id = "89cff5c38f533dc2b819c4639d729581";
-                  domain = "light";
-                }
-              ];
-            };
-          };
-        }
-      ];
+      "automation ui" = "!include automations.yaml";
     };
   };
 
