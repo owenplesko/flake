@@ -7,6 +7,7 @@
 
   home.packages = with pkgs; [
     nodejs_24
+    go
     bun
 
     # Scripts
