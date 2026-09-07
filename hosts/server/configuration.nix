@@ -24,6 +24,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # ZFS
+  networking.hostId = "909b172e4289bb97";
   boot.supportedFilesystems = ["zfs"];
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
