@@ -23,6 +23,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # ZFS
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.enabled = true;
+  services.zfs.autoScrub.enable = true;
+  services.zfs.trim.enable = true;
+
   # Networking
   networking = {
     hostName = "home-server";
@@ -127,7 +133,7 @@
     ];
     config = {
       default_config = {};
-      "automation ui" = "!include automations.yaml";
+      "automation ui" = "!include home-assistant/automations.yaml";
     };
   };
 
@@ -263,6 +269,7 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.systemPackages = with pkgs; [
+    zfs
     git
   ];
 
