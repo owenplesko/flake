@@ -26,6 +26,7 @@
   # ZFS
   networking.hostId = "909b172e";
   boot.supportedFilesystems = ["zfs"];
+  boot.zfs.forceImportAll = true;
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 
@@ -100,7 +101,7 @@
     openFirewall = true;
     settings = {
       media = {
-        path = "/media";
+        path = "/storage/media";
         browseable = "yes";
         writable = "yes";
         "valid users" = "owen";
@@ -165,11 +166,11 @@
   # Define media services
   users.groups.media = {};
   systemd.tmpfiles.rules = [
-    "d /media/Downloads/incomplete 0775 - media - -"
-    "d /media/Downloads/complete   0775 - media - -"
-    "d /media/Movies               0775 - media - -"
-    "d /media/Shows                0775 - media - -"
-    "d /media/Pictures             0775 - media - -"
+    "d /storage/media/Downloads/incomplete 0775 - media - -"
+    "d /storage/media/Downloads/complete   0775 - media - -"
+    "d /storage/media/Movies               0775 - media - -"
+    "d /storage/media/Shows                0775 - media - -"
+    "d /storage/media/Pictures             0775 - media - -"
   ];
 
   sops.templates."sabnzbd-secrets.ini" = {
@@ -200,8 +201,8 @@
     settings = {
       misc = {
         host = "0.0.0.0";
-        download_dir = "/media/Downloads/incomplete";
-        complete_dir = "/media/Downloads/complete";
+        download_dir = "/storage/media/Downloads/incomplete";
+        complete_dir = "/storage/media/Downloads/complete";
         permissions = "775";
       };
       servers = {
