@@ -25,7 +25,6 @@
 
   # ZFS
   boot.supportedFilesystems = ["zfs"];
-  boot.zfs.enabled = true;
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 
