@@ -134,7 +134,7 @@
     ];
     config = {
       default_config = {};
-      "automation ui" = "!include home-assistant/automations.yaml";
+      "automation ui" = "!include automations.yaml";
     };
   };
 
