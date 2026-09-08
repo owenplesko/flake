@@ -138,7 +138,9 @@
     };
   };
 
-  systemd.tmpfiles.rules = ["f ${config.services.home-assistant.configDir}/automations.yaml 0644 hass hass"];
+  systemd.tmpfiles.rules = [
+    "f ${config.services.home-assistant.configDir}/automations.yaml 0644 hass hass"
+  ];
 
   services.home-assistant-matter-hub = {
     enable = true;
@@ -167,13 +169,13 @@
 
   # Define media services
   users.groups.media = {};
-  systemd.tmpfiles.rules = [
-    "d /storage/media/Downloads/incomplete 0775 - media - -"
-    "d /storage/media/Downloads/complete   0775 - media - -"
-    "d /storage/media/Movies               0775 - media - -"
-    "d /storage/media/Shows                0775 - media - -"
-    "d /storage/media/Pictures             0775 - media - -"
-  ];
+  #systemd.tmpfiles.rules = [
+  #  "d /storage/media/Downloads/incomplete 0775 - media - -"
+  #  "d /storage/media/Downloads/complete   0775 - media - -"
+  #  "d /storage/media/Movies               0775 - media - -"
+  #  "d /storage/media/Shows                0775 - media - -"
+  #  "d /storage/media/Pictures             0775 - media - -"
+  #];
 
   sops.templates."sabnzbd-secrets.ini" = {
     content = ''
