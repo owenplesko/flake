@@ -84,6 +84,7 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
+    deepfilternet
     neovim
     git
   ];
@@ -115,7 +116,7 @@
   };
 
   # noise cancelation
-  services.pipewire.extraConfig.pipewire-input-denoising = {
+  extraConfig.pipewire."99-input-denoising" = {
     "context.modules" = [
       {
         name = "libpipewire-module-filter-chain";
