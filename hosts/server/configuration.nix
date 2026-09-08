@@ -138,6 +138,8 @@
     };
   };
 
+  systemd.tmpfiles.rules = ["f ${config.services.home-assistant.configDir}/automations.yaml 0644 hass hass"];
+
   services.home-assistant-matter-hub = {
     enable = true;
     openFirewall = true;
