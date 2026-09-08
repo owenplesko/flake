@@ -113,39 +113,54 @@
     pulse.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-  };
 
-  # noise cancelation
-  extraConfig.pipewire."99-input-denoising" = {
-    "context.modules" = [
-      {
-        name = "libpipewire-module-filter-chain";
-        args = {
-          "node.description" = "DeepFilter Noise Canceling source";
-          "media.name" = "DeepFilter Noise Canceling source";
+    extraLadspaPackages = [pkgs.rnnoise-plugin];
 
-          "filter.graph" = {
-            nodes = [
-              {
-                type = "ladspa";
-                name = "DeepFilter Mono";
-                plugin = "${pkgs.deepfilternet}/lib/ladspa/libdeep_filter_ladspa.so";
-                label = "deep_filter_mono";
-                control = {
-                  "Attenuation Limit (dB)" = 100;
-                };
-              }
-            ];
-          };
+    extraConfig.pipewire = {
+      "60-microphone-denoiser" = {
+        "context.modules" = [
+          {
+            name = "libpipewire-module-rtkit";
+            args = {};
+            flags = ["ifexists" "nofail"];
+          }
+          {
+            name = "libpipewire-module-filter-chain";
+            args = {
+              "node.description" = "Microphone (noise suppressed)";
+              "media.name" = "Microphone (noise suppressed)";
+              "filter.graph" = {
+                nodes = [
+                  {
+                    type = "ladspa";
+                    name = "rnnoise";
+                    plugin = "librnnoise_ladspa";
+                    label = "noise_suppressor_mono";
+                    control = {
+                      "VAD Threshold (%)" = 85.0;
+                      "VAD Grace Period (ms)" = 500;
+                      "Retroactive VAD Grace (ms)" = 0;
+                    };
+                  }
+                ];
+              };
+              "audio.rate" = 48000;
+              "audio.position" = ["FL"];
 
-          "audio.rate" = 48000;
-          "audio.position" = "[MONO]";
+              "capture.props" = {
+                "node.passive" = true;
+                "node.name" = "input.microphone_rnnoise";
+              };
 
-          "capture.props"."node.passive" = true;
-          "playback.props"."media.class" = "Audio/Source";
-        };
-      }
-    ];
+              "playback.props" = {
+                "media.class" = "Audio/Source";
+                "node.name" = "output.microphone_rnnoise";
+              };
+            };
+          }
+        ];
+      };
+    };
   };
 
   hardware.bluetooth.enable = true;
