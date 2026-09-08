@@ -26,7 +26,7 @@
   # ZFS
   networking.hostId = "909b172e";
   boot.supportedFilesystems = ["zfs"];
-  boot.zfs.forceImportAll = true;
+  boot.zfs.extraPools = ["storage"];
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 
