@@ -54,10 +54,8 @@
   };
 
   # bootloader
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/nvme0n1";
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
@@ -84,6 +82,7 @@
 
   # system packages
   environment.systemPackages = with pkgs; [
+    zoom-us
     deepfilternet
     neovim
     git
