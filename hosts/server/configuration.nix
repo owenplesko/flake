@@ -131,6 +131,7 @@
       "thread"
       "matter"
       "otbr"
+      "jellyfin"
     ];
     config = {
       default_config = {};
